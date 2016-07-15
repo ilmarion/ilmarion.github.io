@@ -1,7 +1,12 @@
 <html>
     <head>
+        <title>Old page title</title>
         <script type="text/javascript">
             function closeWindow() {
+                setTimeout(function(){
+                    document.title = "New page title.";
+                }, 5000);
+    
                 setTimeout(function() {
                     window.close();
                 }, 10000);
