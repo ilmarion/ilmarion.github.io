@@ -2,19 +2,59 @@
     <head>
         <title>Old page title</title>
         <script type="text/javascript">
-            function closeWindow() {
-                setTimeout(function(){
-                    document.title = "New page title.";
-                    document.getElementById("h1_title_id").innerHTML = "This page will be closed in 5 seconds.";
-                }, 5000);
-    
+            var backgroundColors = [ 'green', 'white', 'yellow' ];
+            var titles = [ "1111111", "2222222", "3333333" ];
+            var currentTheme = 0;
+            var millisecondsBeforeClose;
+            var millisecondsBeforeUpdateAppearance;
+            var updateIntervalID;
+
+            function startCloseTimer() {
+                millisecondsBeforeClose = 10000;
+                updateButtonText("close_timer_button", millisecondsBeforeClose);
+
                 setTimeout(function() {
                     window.close();
-                }, 10000);
-             }
+                }, millisecondsBeforeClose);
+
+                setInterval(function() {
+                    millisecondsBeforeClose -= 1000;
+                    updateButtonText("close_timer_button", millisecondsBeforeClose);
+                }, 1000);
+            }
+
+            function updateButtonText(buttonId, millisecondsLeft) {
+                document.getElementById(buttonId).innerHTML = (millisecondsLeft / 1000).toString();
+            }
+
+            function updatePageAppearanceAfterDelay() {
+                millisecondsBeforeUpdateAppearance = 5000;
+                updateButtonText("update_timer_button", millisecondsBeforeUpdateAppearance);
+
+                setTimeout(updatePageAppearance, millisecondsBeforeUpdateAppearance);
+
+                updateIntervalID = setInterval(function() {
+                    if (millisecondsBeforeUpdateAppearance <= 1000) {
+                        clearInterval(updateIntervalID);
+                        document.getElementById("update_timer_button").innerHTML = "Change page after delay";
+                    } else {
+                        millisecondsBeforeUpdateAppearance -= 1000;
+                        updateButtonText("update_timer_button", millisecondsBeforeUpdateAppearance);
+                    }
+                }, 1000);
+            }
+
+            function updatePageAppearance() {
+                currentTheme = (currentTheme + 1)%titles.length;
+                document.body.style.background = backgroundColors[currentTheme];
+                document.title = titles[currentTheme];
+            }
         </script>
     </head>
-    <body onLoad="closeWindow()">
-        <h1 id="h1_title_id">This page will be closed in 10 seconds.</h1>  
+    <body onload="updatePageAppearance()">
+        <div style="width:200px; margin:50 auto;">
+            <p><button id="close_timer_button" style="height:50px;width:200px;font-size:18px" onclick="startCloseTimer()">Close after delay</button></p>
+            <p><button id="update_timer_button" style="height:50px;width:200px;font-size:18px" onclick="updatePageAppearanceAfterDelay()">Change page after delay</button></p>
+        </div>
     </body>
 </html>
