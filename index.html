@@ -8,7 +8,9 @@
             var currentTheme = 0;
             var millisecondsBeforeClose;
             var millisecondsBeforeUpdateAppearance;
+            var millisecondsBeforeChangePage;
             var updateIntervalID;
+            var changeIntervalID;
 
             function startCloseTimer() {
                 millisecondsBeforeClose = 10000;
@@ -50,12 +52,34 @@
                 document.body.style.background = backgroundColors[currentTheme];
                 document.title = titles[currentTheme];
             }
+
+            function changePageAfterDelay() {
+                millisecondsBeforeChangePage = 5000;
+                updateButtonText("change_page_timer_button", millisecondsBeforeChangePage);
+
+                setTimeout(changePage, millisecondsBeforeChangePage);
+
+                changeIntervalID = setInterval(function() {
+                    if (millisecondsBeforeChangePage <= 1000) {
+                        clearInterval(changeIntervalID);
+                        document.getElementById("change_page_timer_button").innerHTML = "Go to other page after delay";
+                    } else {
+                        millisecondsBeforeChangePage -= 1000;
+                        updateButtonText("change_page_timer_button", millisecondsBeforeChangePage);
+                    }
+                }, 1000);
+            }
+
+            function changePage() {
+                window.location.href = "http://lenta.ru";
+            }
         </script>
     </head>
     <body onload="updatePageAppearance()">
         <div style="width:200px; margin:50 auto;">
             <p><button id="close_timer_button" style="height:50px;width:200px;font-size:20px" onclick="startCloseTimer()">Close after delay</button></p>
-            <p><button id="update_timer_button" style="height:50px;width:200px;font-size:20px" onclick="updatePageAppearanceAfterDelay()">Change page after delay</button></p>
+            <p><button id="update_timer_button" style="height:50px;width:200px;font-size:20px" onclick="updatePageAppearanceAfterDelay()">Update page after delay</button></p>
+            <p><button id="change_page_timer_button" style="height:50px;width:200px;font-size:20px" onclick="changePageAfterDelay()">Go to other page after delay</button></p>
         </div>
     </body>
 </html>
