@@ -73,6 +73,10 @@
             function changePage() {
                 window.location.href = "http://lenta.ru";
             }
+            
+            function openNewWindow() {
+                window.open('', '');
+            }
         </script>
     </head>
     <body onload="updatePageAppearance()">
@@ -80,6 +84,7 @@
             <p><button id="close_timer_button" style="height:50px;width:200px;font-size:20px" onclick="startCloseTimer()">Close after delay</button></p>
             <p><button id="update_timer_button" style="height:50px;width:200px;font-size:20px" onclick="updatePageAppearanceAfterDelay()">Update page after delay</button></p>
             <p><button id="change_page_timer_button" style="height:50px;width:200px;font-size:20px" onclick="changePageAfterDelay()">Go to other page after delay</button></p>
+            <p><button id="open_new_window_button" style="height:50px;width:200px;font-size:20px" onclick="openNewWindow()">Open new window</button></p>
         </div>
     </body>
 </html>
