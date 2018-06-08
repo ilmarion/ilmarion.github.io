@@ -1,9 +1,99 @@
 <html>
     <head>
-        <title>Page title</title>
+        <title>Old page title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript">
+            var backgroundColors = [ 'green', 'white', 'yellow' ];
+            var titles = [ "1111111", "2222222", "3333333" ];
+            var currentTheme = 0;
+            var millisecondsBeforeClose;
+            var millisecondsBeforeUpdateAppearance;
+            var millisecondsBeforeChangePage;
+            var updateIntervalID;
+            var changeIntervalID;
+
+            function startCloseTimer() {
+                millisecondsBeforeClose = 10000;
+                updateButtonText("close_timer_button", millisecondsBeforeClose);
+
+                setTimeout(function() {
+                    window.close();
+                }, millisecondsBeforeClose);
+
+                setInterval(function() {
+                    millisecondsBeforeClose -= 1000;
+                    updateButtonText("close_timer_button", millisecondsBeforeClose);
+                }, 1000);
+            }
+
+            function updateButtonText(buttonId, millisecondsLeft) {
+                document.getElementById(buttonId).innerHTML = (millisecondsLeft / 1000).toString();
+            }
+
+            function updatePageAppearanceAfterDelay() {
+                millisecondsBeforeUpdateAppearance = 5000;
+                updateButtonText("update_timer_button", millisecondsBeforeUpdateAppearance);
+
+                setTimeout(updatePageAppearance, millisecondsBeforeUpdateAppearance);
+
+                updateIntervalID = setInterval(function() {
+                    if (millisecondsBeforeUpdateAppearance <= 1000) {
+                        clearInterval(updateIntervalID);
+                        document.getElementById("update_timer_button").innerHTML = "Change page after delay";
+                    } else {
+                        millisecondsBeforeUpdateAppearance -= 1000;
+                        updateButtonText("update_timer_button", millisecondsBeforeUpdateAppearance);
+                    }
+                }, 1000);
+            }
+
+            function updatePageAppearance() {
+                currentTheme = (currentTheme + 1)%titles.length;
+                document.body.style.background = backgroundColors[currentTheme];
+                document.title = titles[currentTheme];
+            }
+
+            function changePageAfterDelay() {
+                millisecondsBeforeChangePage = 5000;
+                updateButtonText("change_page_timer_button", millisecondsBeforeChangePage);
+
+                setTimeout(changePage, millisecondsBeforeChangePage);
+
+                changeIntervalID = setInterval(function() {
+                    if (millisecondsBeforeChangePage <= 1000) {
+                        clearInterval(changeIntervalID);
+                        document.getElementById("change_page_timer_button").innerHTML = "Go to other page after delay";
+                    } else {
+                        millisecondsBeforeChangePage -= 1000;
+                        updateButtonText("change_page_timer_button", millisecondsBeforeChangePage);
+                    }
+                }, 1000);
+            }
+
+            function changePage() {
+                window.location.href = "http://lenta.ru";
+            }
+
+            function openNewWindow(url) {
+                window.open(url, '');
+            }
+        </script>
     </head>
-    <body>
-        Test URLs are moved to internal server.
+    <body onload="updatePageAppearance()">
+        <div style="width:200px; margin:50 auto;">
+            <p><button id="close_timer_button" style="height:50px;width:200px;font-size:20px" onclick="startCloseTimer()">Close after delay</button></p>
+            <p><button id="update_timer_button" style="height:50px;width:200px;font-size:20px" onclick="updatePageAppearanceAfterDelay()">Update page after delay</button></p>
+            <p><button id="change_page_timer_button" style="height:50px;width:200px;font-size:20px" onclick="changePageAfterDelay()">Go to other page after delay</button></p>
+            <p><button id="open_new_window_button" style="height:50px;width:200px;font-size:20px" onclick="openNewWindow('')">Open empty url in new window</button></p>
+            <p><button id="open_new_window_button" style="height:50px;width:200px;font-size:20px" onclick="openNewWindow('about:blank')">Open about:blank in new window</button></p>
+            <p><a href="https://yandex.ru" target="_blank">Open Yandex</a></p>
+            <p><a href="https://vuupc.com" target="_blank">Open vuupc.com</a></p>
+            <p><a href="opentabs.html" target="_blank">Opening tabs</a></p>
+            <p><a href="notitle.html" target="_blank">Page without title</a></p>
+            <p><a href="jsfiddleymaps.html" target="_blank">Embedded JSFiddle (YMaps).</a></p>
+            <p><a href="http://jsfiddle.net/wfp21tpd/" target="_blank">JSFiddle (Facetime)</a></p>
+            <p><a href="pagefortests.html" target="_blank">Login form</a></p>
+            <p><a href="pagefortests2.html" target="_blank">Change password form</a></p>
+        </div>
     </body>
 </html>
