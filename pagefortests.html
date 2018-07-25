@@ -8,10 +8,41 @@
         </script>
     </head>
     <body>
-      <form action="notitle.html">
-        <input type="text" name="username">
-        <input type="password" name="password">
-        <button type="submit">Войти</button>
-      </form>
+        <a id="elem" href="http://ilmarion.github.io">Some link</a>
+        
+        <div id="divID">Events:</div>
+        <script>
+            function handler1() {
+                var div = document.getElementById('divID');
+                div.innerHTML += '\nClick';
+            };
+            function handler2() {
+                var div = document.getElementById('divID');
+                div.innerHTML += '\nContext menu';
+            };
+            function handler3() {
+                var div = document.getElementById('divID');
+                div.innerHTML += '\nMouse over';
+            };
+            function handler4() {
+                var div = document.getElementById('divID');
+                div.innerHTML += '\nMouse down';
+            };
+            function handler5() {
+                var div = document.getElementById('divID');
+                div.innerHTML += '\nMouse up';
+            };
+            function handler6() {
+                var div = document.getElementById('divID');
+                div.innerHTML += '\nFocus';
+            };
+
+            elem.addEventListener("click", handler1);
+            elem.addEventListener("contextmenu", handler2);
+            elem.addEventListener("contextmenu", handler3);
+            elem.addEventListener("mousedown", handler4);
+            elem.addEventListener("mouseup", handler5);
+            elem.addEventListener("focus", handler6);
+        </script>
     </body>
 </html>
