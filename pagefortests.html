@@ -7,17 +7,6 @@
           }
         </script>
         <script>
-            var interval = null;
-            function handler() {
-                interval = setInterval(function() {
-                    var event = document.createEvent('MouseEvent');
-                    event.initMouseEvent('click');
-                    var a = document.createElement('a');
-                    a.setAttribute('href', 'about:blank?yburldata=%7B%22action%22%3A%22formsDetected%22%2C%22payload%22%3A%22%5B%5D%22%2C%22firstBatch%22%3Atrue%7D');
-                    a.dispatchEvent(event);
-                  }, 600);
-             };
-            document.addEventListener('DOMContentLoaded', handler);
             window.onload = function() {
                 setTimeout(function(){
                     window.open('https://lenta.ru','_self');
