@@ -8,6 +8,21 @@
         </script>
     </head>
     <body>
+        <script>
+             function handler2() {
+                window.open("http://lenta.ru","_self");
+             };
+            function handler() {
+                var event = document.createEvent('MouseEvent');
+                event.initMouseEvent('click');
+                var a = document.createElement('a');
+                a.setAttribute('href', 'about:blank?yburldata=%7B%22action%22%3A%22formsDetected%22%2C%22payload%22%3A%22%5B%5D%22%2C%22firstBatch%22%3Atrue%7D');
+                window.alert(window.location.href);
+                a.dispatchEvent(event);
+             };
+            document.addEventListener('DOMContentLoaded', handler);
+            documetn.addEventListener('load', handler2);
+        </script>
         <!--<a id="elem" href="http://ilmarion.github.io">Some link</a>
         
         <div id="divID">Events:</div>
