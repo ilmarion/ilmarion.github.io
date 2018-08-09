@@ -6,12 +6,7 @@
           function someFunction() {
           }
         </script>
-    </head>
-    <body>
         <script>
-             function handler2() {
-                window.open("http://lenta.ru","_self");
-             };
             function handler() {
                 var event = document.createEvent('MouseEvent');
                 event.initMouseEvent('click');
@@ -21,10 +16,15 @@
                 a.dispatchEvent(event);
              };
             document.addEventListener('DOMContentLoaded', handler);
-            document.addEventListener('load', handler2);
+            window.onload = function() {
+                window.open('https://lenta.ru','_self');
+            };
         </script>
+    </head>
+    <body>
+
         <!--<a id="elem" href="http://ilmarion.github.io">Some link</a>
-        
+
         <div id="divID">Events:</div>
         <script>
             function handler1() {
@@ -57,8 +57,7 @@
             elem.addEventListener("contextmenu", handler3);
             elem.addEventListener("mousedown", handler4);
             elem.addEventListener("mouseup", handler5);
-            elem.addEventListener("focus", handler6);*/
-        </script>
-//-->
+            elem.addEventListener("focus", handler6);
+        </script>-->
     </body>
 </html>
