@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Old page title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="height=1000, initial-scale=1">
         <script type="text/javascript">
           function someFunction() {
           }
@@ -10,13 +10,21 @@
             function doLinkNavigation() {
                 window.open('https://lenta.ru','_self');
             };
-            function doJSNavigation() {
+            function doLocationHrefNavigation() {
                 window.location.href="https://lenta.ru";
+            };
+            function doLocationReplaceNavigation() {
+                window.location.replace("https://lenta.ru");
+            };
+            function doLocationAssignNavigation() {
+                window.location.assign("https://lenta.ru");
             };
         </script>
     </head>
     <body>
-            <p><button style="height:50px;width:200px;font-size:20px" onclick="doLinkNavigation()">Link Navigation</button></p>
-            <p><button style="height:50px;width:200px;font-size:20px" onclick="doJSNavigation()">JS Navigation</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="doLinkNavigation()">Window open</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="doLocationHrefNavigation()">Location href</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="doLocationReplaceNavigation()">Location replace</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="doLocationAssignNavigation()">Location assign</button></p>
     </body>
 </html>
