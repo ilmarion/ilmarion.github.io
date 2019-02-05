@@ -7,13 +7,16 @@
           }
         </script>
         <script>
-            window.onload = function() {
-                setTimeout(function(){
-                    window.open('https://lenta.ru','_self');
-                }, 400);
+            function doLinkNavigation() {
+                window.open('https://lenta.ru','_self');
+            };
+            function doJSNavigation() {
+                window.location.href="https://lenta.ru";
             };
         </script>
     </head>
     <body>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="doLinkNavigation()">Link Navigation</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="doJSNavigation()">JS Navigation</button></p>
     </body>
 </html>
