@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>FSTest</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            function checkAvailability() {
+                if (document.webkitFullscreenEnabled) {
+                    console.log("[FS]: full screen mode available");
+                } else {
+                    console.log("[FS]: full screen mode unavailable");
+                }
+            }
+            checkAvailability();
+
+            function fullScreen(element) {
+                checkAvailability();
+                if(element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if(element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if(element.mozRequestFullscreen) {
+                    element.mozRequestFullScreen();
+                }
+            }
+
+            function goFullscreen() {
+                var element = document.getElementById("fsButton");
+                fullScreen(element);
+            }
+
+            function goFullscreenVideo() {
+                var element = document.getElementById("video");
+                fullScreen(element);
+            }
+
+            function goFullscreenDiv() {
+                var element = document.getElementById("div");
+                fullScreen(element);
+            }
+
+            document.onwebkitfullscreenchange = function (e) {
+                if (!document.webkitCurrentFullScreenElement) {
+                    console.log("[FS]: exit from fullscreen");
+                } else {
+                    console.log("[FS]: enter fullscreen");
+                }
+            };
+            document.onwebkitfullscreenerror = function ( event ) {
+                console.log("[FS]: Unable to switch into full-screen mode.");
+            };
+        </script>
+    </head>
+    <body>
+        <div style="width:200px; margin:50 auto;">
+            <p><button id="fsButton" style="height:50px;width:200px;font-size:20px" onclick="goFullscreen()">Fullscreen Button</button></p>
+            <p><button id="fsVideo" style="height:50px;width:200px;font-size:20px" onclick="goFullscreenVideo()">Fullscreen Video</button></p>
+            <p><button id="fsDiv" style="height:50px;width:200px;font-size:20px" onclick="goFullscreenDiv()">Fullscreen Div</button></p>
+            <video id="video" controls width="320">
+                <source src="http://www.archive.org/download/Mario1_507/Mario1_507_512kb.mp4">
+                <source src="http://www.archive.org/download/Mario1_507/Mario1_507.ogv">
+            </video>
+            <p><i>Video taken from <a href="http://www.archive.org/details/Mario1_507">archive.org</a>.</i></p>
+            <div id="div" style="width:320px; height:50px; margin:50 auto; background-color:coral">
+                <p>This is DIV</p>
+            </div>
+        </div>
+        <div id="div2" style="width:320px; height:50px; margin:50 auto; background-color: aquamarine;">
+            <p>This is also DIV</p>
+        </div>
+    </body>
+</html>
