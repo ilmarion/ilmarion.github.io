@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Navigations</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript">
+            const openNewWindow = (url) => window.open(url, '');
+            const historyNavigation = (url) => {
+              const state = { 'id': 1 };
+              window.history.pushState(state, "", url);
+            }
+            const locationNavigation = (url) => window.location.assign(url);
+        </script>
+    </head>
+    <body>
+        <div style="width:200px; margin:50 auto;">
+            <p><a href="https://www.google.com">Open site (no target)</a></p>
+            <p><a href="https://yandex.ru/metro/">Open metro (no target)</a></p>
+            <p><a href="https://www.google.com" target="_blank">Open site (target blank)</a></p>
+            <p><a href="https://yandex.ru/metro/" target="_blank">Open metro (target blank)</a></p>
+            <p><a href="https://www.google.com" target="_self">Open site (target self)</a></p>
+            <p><a href="https://yandex.ru/metro/" target="_self">Open metro (target self)</a></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="openNewWindow('https://www.google.com')">Open site (window open)</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="openNewWindow('https://yandex.ru/metro/')">Open metro (window open)</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="historyNavigation('http://ilmarion.github.io')">Open site (history API)</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="locationNavigation('https://www.google.com')">Open site (Location API)</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="locationNavigation('https://yandex.ru/metro/')">Open metro (Location API)</button></p>
+        </div>
+    </body>
+</html>
