@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Alerts</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript">
+            const alertAfterTimeout = () => {
+                setTimeout(() => {
+                    alert("Hello after timeout");
+                }, 5000);
+            }
+        </script>
+    </head>
+    <body>
+        <div style="width:200px; margin:50 auto;">
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="alert('Hello')">Alert</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="prompt('Enter text', 'text')">Prompt</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="confirm('Question')">Confirm</button></p>
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="alertAfterTimeout()">Alert after timeout (5 sec)</button></p>
+        </div>
+    </body>
+</html>
