@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Location</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript">
+            const locationAfterTimeout = () => {
+                setTimeout(() => {
+                    navigator.geolocation.getCurrentPosition((pos) => {
+                    });
+                }, 5000);
+            }
+        </script>
+    </head>
+    <body>
+        <div style="width:200px; margin:50 auto;">
+            <p><button style="height:50px;width:200px;font-size:20px" onclick="locationAfterTimeout()">Location after timeout (5 sec)</button></p>
+        </div>
+    </body>
+</html>
